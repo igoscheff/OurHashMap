@@ -69,12 +69,13 @@ public class OurHashMap<E, T> implements OurMap<E, T> {
 
         int index = computeIndex(key);
 
+        if (source[index] == null) return false;
+
         for (Node<E, T> equalsNode : source[index]) {
             if (key.equals(equalsNode.key)) {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -88,6 +89,7 @@ public class OurHashMap<E, T> implements OurMap<E, T> {
             for (int i = 0; i < source[index].size(); i++) {
                 if (key.equals(source[index].get(i).key)) {
                     source[index].remove(i);
+                    size--;
                     return true;
                 }
             }
